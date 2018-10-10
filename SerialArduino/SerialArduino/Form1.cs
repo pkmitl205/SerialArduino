@@ -17,6 +17,7 @@ namespace SerialArduino
         public Form1()
         {
             InitializeComponent();
+            myDelegate = new AddDataDelegate(AddData);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -68,6 +69,10 @@ namespace SerialArduino
             serialPort1.BaudRate = Int32.Parse(comboBox2.Text);
             Console.WriteLine(serialPort1.BaudRate);
         }
+        public void AddData(string str)
+        {
+            textBox1.AppendText(str);
+        }
 
         private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
@@ -75,7 +80,13 @@ namespace SerialArduino
             string str = sp.ReadExisting();
             Console.WriteLine(str);
 
-            textBox1.AppendText(str); // Cross Thread Problem
+            textBox1.Invoke(myDelegate, str);
         }
+        
+        // declar delegate
+            public delegate void AddDataDelegate(string str);
+
+        // define delegate
+            public AddDataDelegate myDelegate;
     }
 }
