@@ -75,7 +75,7 @@ namespace SerialArduino
             string str = sp.ReadExisting();
             Console.WriteLine(str);
 
-            textBox1.AppendText(str);
+            textBox1.AppendText(str); // Cross Thread Problem
         }
     }
 }
