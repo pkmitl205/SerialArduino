@@ -24,7 +24,7 @@ void loop() {
 
   // print out the value you read:
   // Serial.println("Hello World %d", i);
-  Serial.println("Hello World");
+  Serial.println("Hello World Serial Port Test");
   //i++;
   delay(1000);        // delay in between reads for stability
 }

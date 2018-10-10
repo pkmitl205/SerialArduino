@@ -74,6 +74,8 @@ namespace SerialArduino
             SerialPort sp = (SerialPort)sender;
             string str = sp.ReadExisting();
             Console.WriteLine(str);
+
+            textBox1.AppendText(str);
         }
     }
 }
